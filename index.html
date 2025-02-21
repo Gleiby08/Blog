@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Mundo del Baloncesto Actual</title>
-    <!-- Enlace a Font Awesome para los íconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+  <link rel="icon" href="https://publish.one37pm.net/wp-content/uploads/2022/03/NBAMobile.png" type="image/png">
     <style>
         /* Estilos generales */
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            color: #fff;
-            background: linear-gradient(270deg, #ffcc00, #8b8f8b, #ffcc00);
-            background-size: 400% 400%;
-            animation: GradientBackground 15s ease infinite;
+            font-family: Arial, sans-serif;
+            background-image: url("https://img1.wallspic.com/crops/7/4/0/0/20047/20047-baloncesto-cancha_de_baloncesto-de_madera-madera-piso-3918x2688.jpg");
+            background-size: cover; /* Esto hace que la imagen cubra toda la pantalla */
+            background-position: center; /* Esto centra la imagen */
+            background-attachment: fixed; /* Esto hace que la imagen se quede fija al hacer scroll */
+            color: #f6f2f2; /* Color de texto */
         }
 
         @keyframes GradientBackground {
@@ -24,27 +23,10 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Barra de íconos centrada */
-        .icon-bar {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-            z-index: 1000;
-        }
+        
 
-        .icon-bar a {
-            color: #fff;
-            font-size: 24px;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        .icon-bar a:hover {
-            transform: scale(1.5); /* Agrandar el ícono */
-            color: #40b6f5; /* Cambiar el color al pasar el cursor */
-        }
+        
+        
 
         .container {
             max-width: 800px;
@@ -55,6 +37,15 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             margin-top: 80px; /* Espacio para la barra de íconos */
         }
+    
+      .blog-post {
+          background-color: white;
+          padding: 30px;
+          border-radius: 10px;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+          margin-bottom: 20px;
+      }
+    
 
         h1 {
             text-align: center;
@@ -67,7 +58,7 @@
             font-size: 2rem;
             margin-top: 30px;
             margin-bottom: 10px;
-            color: #ffcc00;
+            color: #fe6807;
         }
 
         p {
@@ -85,7 +76,7 @@
         }
 
         .highlight {
-            color: #ffcc00;
+            color: #fe6807;
             font-weight: bold;
         }
 
@@ -95,7 +86,290 @@
             font-size: 0.9rem;
             color: #ccc;
         }
+    
+      .blog-post {
+          background-color: white;
+          padding: 30px;
+          border-radius: 10px;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+          margin-bottom: 20px;
+      }
+      
+        .carousel-container {
+          width: 100%;
+          overflow: hidden;
+          position: relative;
+      }
+      .carousel-track {
+          display: flex;
+          transition: transform 0.5s ease;
+          width: 100%;
+      }
+      .carousel-item {
+          flex: 0 0 100%;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      .carousel-item img {
+          max-width: 100%;
+          max-height: 500px;
+          object-fit: cover;
+      }
+  
+      
+      
+  </style>
+  
+</head>
+<body>
+  <div class="carousel-container">
+      <div class="carousel-track" id="carouselTrack">
+          <!-- Las imágenes se insertarán dinámicamente con JavaScript -->
+      </div>
+  </div>
+  <div class="trivia-container">
+    <h2>Trivia</h2>
+    <div id="trivia">
+        <p id="pregunta"></p>
+        <div id="opciones"></div>
+        <p id="resultado"></p>
+    </div>
+</div>
+<script>
+    const preguntas = [
+        {
+            pregunta: "¿Cual fue el primer equipo en el que jugo kobe bryant?",
+            opciones: ["Chicago Bulls", "Golden State", "Charlotte Hornets", "Los Angeles Lakers"],
+            respuestaCorrecta: "Charlotte Hornets"
+        },
+        {
+            pregunta: "¿En que año gano michael jordan su primero anillo de oro?", 
+            opciones: ["1991", "1995", "1990", "1993"],
+            respuestaCorrecta: "1991"
+
+        }
+
+        
+        
+    ];
+    
+    class Trivia {
+        constructor(preguntas) {
+            this.preguntas = preguntas;
+            this.preguntaActual = 0;
+            this.puntaje = 0;
+        }
+    
+        iniciar() {
+            this.mostrarPregunta();
+        }
+    
+        mostrarPregunta() {
+            const trivia = document.getElementById('trivia');
+            const preguntaElemento = document.getElementById('pregunta');
+            const opcionesElemento = document.getElementById('opciones');
+            
+            const preguntaActual = this.preguntas[this.preguntaActual];
+            
+            preguntaElemento.textContent = preguntaActual.pregunta;
+            
+            opcionesElemento.innerHTML = '';
+            preguntaActual.opciones.forEach(opcion => {
+                const boton = document.createElement('button');
+                boton.textContent = opcion;
+                boton.onclick = () => this.verificarRespuesta(opcion);
+                opcionesElemento.appendChild(boton);
+            });
+        }
+    
+        verificarRespuesta(respuestaSeleccionada) {
+            const preguntaActual = this.preguntas[this.preguntaActual];
+            const resultadoElemento = document.getElementById('resultado');
+    
+            if (respuestaSeleccionada === preguntaActual.respuestaCorrecta) {
+                resultadoElemento.textContent = '¡Respuesta Correcta!';
+                this.puntaje++;
+            } else {
+                resultadoElemento.textContent = 'Respuesta Incorrecta';
+            }
+    
+            this.preguntaActual++;
+    
+            if (this.preguntaActual < this.preguntas.length) {
+                setTimeout(() => this.mostrarPregunta(), 1500);
+            } else {
+                resultadoElemento.textContent = `Fin de la trivia: ${this.puntaje}`;
+            }
+        }
+    }
+    
+    // Iniciar trivia al cargar página
+    document.addEventListener('DOMContentLoaded', () => {
+        const trivia = new Trivia(preguntas);
+        trivia.iniciar();
+    });
+    </script>
+    
+    <style>
+    .trivia-container {
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 20px;
+        text-align: center;
+        background-color: #f4f4f4;
+        border-radius: 10px;
+    }
+    
+    #opciones {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    button {
+        padding: 10px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #2980b9;
+    }
     </style>
+</head>
+<body>
+
+   
+</div>
+
+<script>
+     class InfiniteCarousel {
+          constructor(containerId, images) {
+              this.container = document.getElementById(containerId);
+              this.images = images;
+              this.currentIndex = 0;
+              this.isTransitioning = false;
+
+              this.init();
+          }
+
+          init() {
+              // Clonar imágenes para crear efecto infinito
+              this.renderImages();
+              this.setupEventListeners();
+              this.startAutoplay();
+          }
+
+          renderImages() {
+              // Limpiar contenido previo
+              this.container.innerHTML = '';
+
+              // Añadir imágenes con clonación
+              const totalImages = this.images.length;
+              
+              // Imagen anterior (última)
+              const prevImage = this.createImageElement(
+                  this.images[totalImages - 1]
+              );
+              this.container.appendChild(prevImage);
+
+              // Imágenes actuales
+              this.images.forEach(src => {
+                  const img = this.createImageElement(src);
+                  this.container.appendChild(img);
+              });
+
+              // Siguiente imagen (primera)
+              const nextImage = this.createImageElement(this.images[0]);
+              this.container.appendChild(nextImage);
+
+              // Posicionar en la primera imagen real
+              this.container.style.transform = `translateX(-100%)`;
+          }
+
+          createImageElement(src) {
+              const item = document.createElement('div');
+              item.className = 'carousel-item';
+              
+              const img = document.createElement('img');
+              img.src = src;
+              img.alt = 'Imagen de Carrusel';
+              
+              item.appendChild(img);
+              return item;
+          }
+
+          next() {
+              if (this.isTransitioning) return;
+              
+              this.isTransitioning = true;
+              this.currentIndex++;
+              
+              this.container.style.transition = 'transform 0.5s ease';
+              this.container.style.transform = `translateX(-${(this.currentIndex + 1) * 100}%)`;
+              
+              setTimeout(() => {
+                  if (this.currentIndex >= this.images.length) {
+                      this.container.style.transition = 'none';
+                      this.container.style.transform = `translateX(-100%)`;
+                      this.currentIndex = 0;
+                  }
+                  this.isTransitioning = false;
+              }, 500);
+          }
+
+          prev() {
+              if (this.isTransitioning) return;
+              
+              this.isTransitioning = true;
+              this.currentIndex--;
+              
+              this.container.style.transition = 'transform 0.5s ease';
+              this.container.style.transform = `translateX(-${(this.currentIndex + 1) * 100}%)`;
+              
+              setTimeout(() => {
+                  if (this.currentIndex < 0) {
+                      this.container.style.transition = 'none';
+                      this.container.style.transform = `translateX(-${this.images.length * 100}%)`;
+                      this.currentIndex = this.images.length - 1;
+                  }
+                  this.isTransitioning = false;
+              }, 500);
+          }
+
+          setupEventListeners() {
+              // Ejemplo de navegación (puedes agregar botones)
+              document.addEventListener('keydown', (e) => {
+                  if (e.key === 'ArrowRight') this.next();
+                  if (e.key === 'ArrowLeft') this.prev();
+              });
+          }
+
+          startAutoplay() {
+              setInterval(() => {
+                  this.next();
+              }, 3000);
+          }
+      }
+
+      // Inicializar carrusel
+      const images = [
+          'https://www.khmertimeskh.com/wp-content/uploads/2017/11/20-063_876897716.jpg',
+          'https://www.bostonsportsjournal.com/img/legacy/GettyImages-1145754279-1600x900.jpg',
+          'https://phantom-marca-us.unidadeditorial.es/ef456de5b1bb725d18901e494f5c8d61/resize/828/f/jpg/assets/multimedia/imagenes/2024/06/17/17186527905154.jpg',
+          'https://e00-marca.uecdn.es/assets/multimedia/imagenes/2024/06/07/17177219895448.jpg'
+      ];
+
+      new InfiniteCarousel('carouselTrack', images);
+</script>
+</body>
+</html>
 </head>
 <body>
     
@@ -130,6 +404,6 @@
         <div class="footer">
             <p>© 2023 El Mundo del Baloncesto. Desarollado por Gleiby Barreto.</p>
         </div>
-    </div>
+       
 </body>
 </html>
