@@ -25,6 +25,8 @@
 
         
 
+        
+        
 
         .container {
             max-width: 800px;
@@ -128,118 +130,163 @@
       </div>
   </div>
   <div class="trivia-container">
-    <h2>Trivia</h2>
+    <h2></h2>
     <div id="trivia">
         <p id="pregunta"></p>
         <div id="opciones"></div>
         <p id="resultado"></p>
     </div>
 </div>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#triviaContainer {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    display: none; /* Ocultar inicialmente */
+}
+.opcion {
+    
+            display: block;
+            margin: 5px auto; /* Centrar las opciones */
+            padding: 10px;
+            background-color: #6b6161;
+            color: rgb(7, 6, 6);
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 80%; /* Ancho de las opciones */
+}
+.opcion:hover {
+    background-color: #525355;
+}
+#iniciarTrivia {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+#iniciarTrivia:hover {
+    background-color: #218838;
+}
+</style>
+</head>
+<body>
+<h1>Trivia</h1>
+<button id="iniciarTrivia">Iniciar Trivia</button>
+<div id="triviaContainer">
+<div id="preguntas"></div>
+<div id="resultado"></div>
+</div>
+</style>
 <script>
-    const preguntas = [
-        {
-            pregunta: "¿Cual fue el primer equipo en el que jugo kobe bryant?",
-            opciones: ["Chicago Bulls", "Golden State", "Charlotte Hornets", "Los Angeles Lakers"],
-            respuestaCorrecta: "Charlotte Hornets"
-        },
-        {
-            pregunta: "¿En que año gano michael jordan su primero anillo de oro?", 
-            opciones: ["1991", "1995", "1990", "1993"],
-            respuestaCorrecta: "1991"
-
-        }
-
-        
-        
-    ];
-    
-    class Trivia {
-        constructor(preguntas) {
-            this.preguntas = preguntas;
-            this.preguntaActual = 0;
-            this.puntaje = 0;
-        }
-    
-        iniciar() {
-            this.mostrarPregunta();
-        }
-    
-        mostrarPregunta() {
-            const trivia = document.getElementById('trivia');
-            const preguntaElemento = document.getElementById('pregunta');
-            const opcionesElemento = document.getElementById('opciones');
-            
-            const preguntaActual = this.preguntas[this.preguntaActual];
-            
-            preguntaElemento.textContent = preguntaActual.pregunta;
-            
-            opcionesElemento.innerHTML = '';
-            preguntaActual.opciones.forEach(opcion => {
-                const boton = document.createElement('button');
-                boton.textContent = opcion;
-                boton.onclick = () => this.verificarRespuesta(opcion);
-                opcionesElemento.appendChild(boton);
-            });
-        }
-    
-        verificarRespuesta(respuestaSeleccionada) {
-            const preguntaActual = this.preguntas[this.preguntaActual];
-            const resultadoElemento = document.getElementById('resultado');
-    
-            if (respuestaSeleccionada === preguntaActual.respuestaCorrecta) {
-                resultadoElemento.textContent = '¡Respuesta Correcta!';
-                this.puntaje++;
-            } else {
-                resultadoElemento.textContent = 'Respuesta Incorrecta';
-            }
-    
-            this.preguntaActual++;
-    
-            if (this.preguntaActual < this.preguntas.length) {
-                setTimeout(() => this.mostrarPregunta(), 1500);
-            } else {
-                resultadoElemento.textContent = `Fin de la trivia: ${this.puntaje}`;
-            }
-        }
+const preguntas = [
+    {
+        pregunta: "¿En que año se fundo el baloncesto?",
+        opciones: ["1891", "1895", "1890", "1892"],
+        respuestaCorrecta: "1891"
+    },
+    {
+        pregunta: "¿A que jugador de la NBA se le llamba como Black Mamba'?",
+        opciones: ["Kobe Bryant", "Lebron James", "Stephen Curry", "Michael Jordan"],
+        respuestaCorrecta: "Kobe Bryant"
+    },
+    {
+        pregunta: "¿Que equipo de la NBA gano los PlayOffs del 2024?",
+        opciones: ["Boston Celtics", "Dallas Mavericks", "Chicago Bulls", "Sacramentos Kings"],
+        respuestaCorrecta: "Boston Celtics"
     }
-    
-    // Iniciar trivia al cargar página
-    document.addEventListener('DOMContentLoaded', () => {
-        const trivia = new Trivia(preguntas);
-        trivia.iniciar();
+];
+
+let respuestasUsuario = [];
+let indicePregunta = 0;
+
+const mostrarPregunta = () => {
+    if (indicePregunta < preguntas.length) {
+        const preguntaActual = preguntas[indicePregunta];
+        const opcionesHTML = preguntaActual.opciones.map(opcion => `
+            <button class="opcion" data-respuesta="${opcion}">${opcion}</button>
+        `).join("");
+
+        document.getElementById("preguntas").innerHTML = `
+            <h2>${preguntaActual.pregunta}</h2>
+            <div>${opcionesHTML}</div>
+        `;
+    } else {
+        mostrarResultados();
+    }
+};
+
+const mostrarResultados = () => {
+    const resultadoDiv = document.getElementById("resultado");
+    resultadoDiv.innerHTML = "<h2>Resultados:</h2>";
+    preguntas.forEach((pregunta, index) => {
+        const resultado = respuestasUsuario[index] === pregunta.respuestaCorrecta ? "¡Correcto!" : `Incorrecto. La respuesta correcta es: ${pregunta.respuestaCorrecta}`;
+        resultadoDiv.innerHTML += `<p>${pregunta.pregunta} - ${resultado}</p>`;
     });
-    </script>
-    
+};
+
+document.getElementById("iniciarTrivia").addEventListener("click", () => {
+    respuestasUsuario = [];
+    indicePregunta = 0;
+    document.getElementById("resultado").innerHTML = ""; // Limpiar resultados
+    document.getElementById("triviaContainer").style.display = "block"; // Mostrar el contenedor de trivia
+    mostrarPregunta();
+});
+
+document.getElementById("preguntas").addEventListener("click", (event) => {
+    if (event.target.classList.contains("opcion")) {
+        respuestasUsuario[indicePregunta] = event.target.dataset.respuesta;
+        indicePregunta++;
+        mostrarPregunta();
+    }
+});
+</script>
+</body>
+</html>
     <style>
-    .trivia-container {
-        max-width: 500px;
-        margin: 20px auto;
-        padding: 20px;
-        text-align: center;
-        background-color: #556481;
-        border-radius: 10px;
-        animation: slideInTrivia 0.8s ease-out forwards;
+   body {
+   font-family: Arial, sans-serif;
+            margin: 20px;
     }
-    
-    #opciones {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        margin-top: 15px;
-    }
-    
-    button {
-        padding: 10px;
-        background-color: #3498db;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    
-    button:hover {
-        background-color: #2980b9;
-    }
+        #resultado {
+            margin-top: 20px;
+        }
+        .opcion {
+            display: block;
+            margin: 5px 0;
+            padding: 10px;
+            background-color: #007BFF;
+            color: rgb(0, 0, 0);
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .opcion:hover {
+            background-color: #0056b3;
+        }
+        #iniciarTrivia {
+            padding: 10px 15px;
+            background-color: #fe6807;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #iniciarTrivia:hover {
+            background-color: #fe6807;
+        }
     </style>
 </head>
 <body>
