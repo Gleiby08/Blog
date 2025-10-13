@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Mundo del Baloncesto Actual</title>
+    
+    <link rel="icon" href="https://cdn.nba.com/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Añadir Font Awesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <!-- Barra de Progreso de Lectura -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Barra de Navegación -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">Gleiby's Blog</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="sobre-mi.html">Sobre mí</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Carrusel de imágenes -->
+    <div class="carousel-container">
+        <div class="carousel-track" id="carouselTrack">
+            <!-- Las imágenes se insertarán dinámicamente con JavaScript -->
+        </div>
+        <!-- Controles de navegación -->
+        <button class="carousel-button prev" id="carouselPrev"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-button next" id="carouselNext"><i class="fas fa-chevron-right"></i></button>
+        <!-- Indicadores -->
+        <div class="carousel-indicators" id="carouselIndicators"></div>
+    </div>
+
+    <!-- Contenido principal del blog -->
+    <div class="container">
+        <h1>El Mundo del Baloncesto Actual</h1>
+
+        <h2 class="scroll-reveal fade-left">🌟 Introducción</h2>
+        <p class="scroll-reveal fade-up">El baloncesto es uno de los deportes más populares y emocionantes del mundo. En los últimos años, hemos visto un crecimiento exponencial en su alcance global, con jugadores de todas partes del mundo destacando en las principales ligas, especialmente en la <span class="highlight">NBA</span>.</p>
+
+        <h2 class="scroll-reveal fade-left">🏆 La NBA: El Epicentro del Baloncesto</h2>
+        <p class="scroll-reveal fade-up">La <span class="highlight">NBA</span> sigue siendo la liga más importante del mundo. Con estrellas como <span class="highlight">LeBron James</span>, <span class="highlight">Kevin Durant</span>, y <span class="highlight">Giannis Antetokounmpo</span>, la liga continúa atrayendo a millones de fanáticos. Además, el juego ha evolucionado hacia un estilo más rápido y basado en el tiro de tres puntos, liderado por equipos como los <span class="highlight">Golden State Warriors</span>.</p>
+
+        <img 
+            class="scroll-reveal fade-right lazy-image" 
+            src="https://www.adnradio.cl/resizer/v2/YJZF4DSVARE6NCALGO6SYX4NH4.jpg?auth=...&width=20" 
+            data-src="https://www.adnradio.cl/resizer/v2/YJZF4DSVARE6NCALGO6SYX4NH4.jpg?auth=...&width=800"
+            srcset="https://www.adnradio.cl/resizer/v2/YJZF4DSVARE6NCALGO6SYX4NH4.jpg?auth=...&width=400 400w,
+                     https://www.adnradio.cl/resizer/v2/YJZF4DSVARE6NCALGO6SYX4NH4.jpg?auth=...&width=800 800w,
+                     https://www.adnradio.cl/resizer/v2/YJZF4DSVARE6NCALGO6SYX4NH4.jpg?auth=...&width=1200 1200w"
+            sizes="(max-width: 800px) 100vw, 800px" alt="Partido de la NBA">
+
+        <h2 class="scroll-reveal fade-left">🌍 El Baloncesto Internacional</h2>
+        <p class="scroll-reveal fade-up">Fuera de la NBA, el baloncesto también está en auge. Ligas como la <span class="highlight">Euroliga</span> en Europa y la <span class="highlight">CBA</span> en China están ganando popularidad. Jugadores internacionales como <span class="highlight">Luka Dončić</span> (Eslovenia) y <span class="highlight">Rudy Gobert</span> (Francia) están dejando su huella en la NBA, demostrando que el talento no tiene fronteras.</p>
+
+        <h2 class="scroll-reveal fade-left">🚀 El Futuro del Baloncesto</h2>
+        <p class="scroll-reveal fade-up">El futuro del baloncesto es brillante. Con avances tecnológicos, como el uso de <span class="highlight">inteligencia artificial</span> y <span class="highlight">análisis de datos</span>, los equipos están mejorando su rendimiento. Además, la inclusión y la diversidad están en el centro del deporte, lo que lo hace más accesible para todos.</p>
+
+        <!-- Sección de Últimas Noticias -->
+        <section class="news-section scroll-reveal fade-up">
+            <h2 class="scroll-reveal fade-left">📰 Últimas Noticias</h2>
+            <div class="news-cards-container">
+                <!-- Tarjeta de Noticia 1 -->
+                <div class="news-card scroll-reveal fade-up">
+                    <img class="lazy-image" 
+                         src="https://img.olympics.com/images/image/private/t_s_16_9_g_auto/t_s_w20/f_auto/v1718683955/primary/b9ddwqdi0xphp0ymwdne" 
+                         data-src="https://img.olympics.com/images/image/private/t_s_16_9_g_auto/t_s_w1460/f_auto/v1718683955/primary/b9ddwqdi0xphp0ymwdne" 
+                         alt="Celtics campeones de la NBA 2024">
+                    <div class="news-card-content">
+                        <span class="news-category">Finales NBA</span>
+                        <h3>¡Los Celtics son los campeones de 2024!</h3>
+                        <p>Boston derrota a los Mavericks y consigue su 18º título, convirtiéndose en la franquicia más laureada de la historia de la NBA.</p>
+                    </div>
+                </div>
+                <!-- Tarjeta de Noticia 2 -->
+                <div class="news-card scroll-reveal fade-up" style="animation-delay: 0.2s;">
+                    <img class="lazy-image" 
+                         src="https://library.sportingnews.com/styles/crop_style_16_9_w20/s3/2024-06/Zaccharie%20Risacher%20062624.jpg?h=920923f1&itok=kF2Vp2p_" 
+                         data-src="https://library.sportingnews.com/styles/crop_style_16_9_desktop/s3/2024-06/Zaccharie%20Risacher%20062624.jpg?h=920923f1&itok=kF2Vp2p_" 
+                         alt="Zaccharie Risacher en el Draft de la NBA">
+                    <div class="news-card-content">
+                        <span class="news-category">Draft 2024</span>
+                        <h3>El futuro llega a la NBA</h3>
+                        <p>Zaccharie Risacher es seleccionado como número 1 en el Draft de la NBA por los Atlanta Hawks, en una noche llena de sorpresas y jóvenes promesas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Videos Destacados -->
+        <section class="videos-section scroll-reveal fade-up">
+            <h2 class="scroll-reveal fade-left">🎬 Videos Destacados</h2>
+            <div class="video-cards-container">
+                <!-- Tarjeta de Video 1 -->
+                <div class="video-card scroll-reveal fade-up">
+                    <div class="video-embed-container">
+                        <iframe src="https://www.youtube.com/embed/wihOQTghiX8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-card-content">
+                        <h3>Top 10 Jugadas de las Finales 2024</h3>
+                    </div>
+                </div>
+                <!-- Tarjeta de Video 2 -->
+                <div class="video-card scroll-reveal fade-up" style="animation-delay: 0.2s;">
+                    <div class="video-embed-container">
+                        <iframe src="https://www.youtube.com/embed/l-8CKcAuSt8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-card-content">
+                        <h3>Lo mejor de Victor Wembanyama (Rookie del Año)</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer">
+            <p>© 2024 El Mundo del Baloncesto. Desarrollado por Gleiby Barreto.</p>
+            <div class="footer-social">
+                <a href="https://github.com/Gleiby08" target="_blank" title="GitHub" class="github-icon"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/gleiby-martinez-b0595a349/" target="_blank" title="LinkedIn" class="linkedin-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/TUNUMERODEWHATSAPP" target="_blank" title="WhatsApp" class="whatsapp-icon"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón Volver Arriba -->
+    <a href="#" class="back-to-top" title="Volver Arriba">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
